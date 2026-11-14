@@ -10,7 +10,7 @@ this mod removes the usual height limits of minecraft world, extending them from
 
 this mod also generates deep dark caverns from about -100 all the way down, with some ores here and there, as well as adding a few new structures, such as clouds, sky islands, and sky houses.
 
-[you can check out a slice of this mod&#39;s generation here.](https://lz-fkn.github.io/projects/mc-mods/2deep4me/render.html)
+[you can check out a slice of this generation here.](https://lz-fkn.github.io/projects/mc-mods/2deep4me/render.html)
 
 ## building (boring)
 
@@ -28,7 +28,7 @@ build will be at build/libs/twodeepfourme-X.Y.Z.jar
 this mod supports fabric, quilt and neoforge on minecraft 26.3.
 
 1. download the mod [from Releases tab](https://github.com/lz-fkn/2deep4me/releases/latest) (or from build artifacts in actions tab).
-2. if using fabric or quilt, [also download fabric api](https://modrinth.com/mod/fabric-api) (not needed on neoforge).
+2. if using fabric or quilt, [also download fabric api](https://modrinth.com/mod/fabric-api/versions?g=26.3) (not needed on neoforge).
 3. create a new world, as it can't generate the caverns in already explored chunks.
 4. start digging! make some food, it'll take a very long time...
 
@@ -39,7 +39,7 @@ this mod supports fabric, quilt and neoforge on minecraft 26.3.
 
 ---
 
-> if you liked this mod, feel free to donate some money, i'd appreciate that.
+> if you like this mod, feel free to donate some money, i'd appreciate that.
 > 
 > Monero: `48ke1ZCgEPfApHfEJm6xztLJ6U6wbZwMAXx53Qivj2BRM4b3KM9WVmXZVrhygyzbyjXCfn5Nbm2mki3A7NP4MJDi7gWvJHw`
 

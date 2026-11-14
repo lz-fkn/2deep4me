@@ -5,15 +5,15 @@
   "step": "surface_structures",
   "spawn_overrides": {},
   "terrain_adaptation": "none",
-  "start_pool": "twodeepfourme:island_house_plains",
+  "start_pool": "twodeepfourme:cloud_3",
   "size": 1,
   "start_height": {
     "type": "minecraft:uniform",
     "min_inclusive": {
-        "absolute": 465
+        "absolute": 380
     },
     "max_inclusive": {
-        "absolute": 508
+        "absolute": 430
     }
   },
   "max_distance_from_center": {

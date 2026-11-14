@@ -594,13 +594,21 @@ public abstract class MixinNoiseBasedChunkGenerator {
 
         private static final OreDefinition[] ORES = {
                 new OreDefinition(Blocks.DEEPSLATE_DIAMOND_ORE,
-                        0.10, -1024, -720, 5, 9, 1.05, 1.65, 0x6C8E9CF0A24B315DL),
+                        0.20, -2000, -720, 5, 9, 1.05, 1.65, 0x6C8E9CF0A24B315DL),
                 new OreDefinition(Blocks.DEEPSLATE_GOLD_ORE,
-                        0.14, -1024, -430, 6, 11, 1.15, 1.85, 0xA6B3E4C71D92F805L),
+                        0.28, -1536, -256, 6, 11, 1.15, 1.85, 0xA6B3E4C71D92F805L),
                 new OreDefinition(Blocks.DEEPSLATE_IRON_ORE,
-                        0.22, -980, -180, 7, 13, 1.35, 2.10, 0xD18A3F729BCE6501L),
+                        0.45, -1536, -128, 7, 13, 1.35, 2.10, 0xD18A3F729BCE6501L),
                 new OreDefinition(Blocks.DEEPSLATE_COAL_ORE,
-                        0.16, -1024, -260, 8, 15, 1.40, 2.25, 0x31F0A9D5C8274B6EL)
+                        0.42, -1280, -128, 8, 15, 1.40, 2.25, 0x31F0A9D5C8274B6EL),
+                new OreDefinition(Blocks.DEEPSLATE_EMERALD_ORE,
+                        0.12, -2000, -1024, 4, 7, 0.90, 1.45, 0xE4B17C936A20DF85L),
+                new OreDefinition(Blocks.DEEPSLATE_LAPIS_ORE,
+                        0.28, -1536, -256, 6, 11, 1.15, 1.85, 0x92D5A61BE8437FC0L),
+                new OreDefinition(Blocks.DEEPSLATE_REDSTONE_ORE,
+                        0.38, -1280, -256, 7, 13, 1.35, 2.10, 0xF17C4B8D62A930E5L),
+                new OreDefinition(Blocks.DEEPSLATE_COPPER_ORE,
+                        0.40, -1280, -128, 8, 15, 1.40, 2.25, 0xB83E71D4C9062FA5L)
         };
     }
 

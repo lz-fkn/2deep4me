@@ -6,7 +6,7 @@
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "twodeepfourme:island_house_plains",
+        "location": "twodeepfourme:island_house_com_3",
         "processors": "minecraft:empty",
         "projection": "rigid"
       }

@@ -8,6 +8,18 @@
     {
       "structure": "twodeepfourme:cloud_2",
       "weight": 1
+    },
+    {
+      "structure": "twodeepfourme:cloud_3",
+      "weight": 1
+    },
+    {
+      "structure": "twodeepfourme:cloud_4",
+      "weight": 1
+    },
+    {
+      "structure": "twodeepfourme:cloud_5",
+      "weight": 1
     }
   ],
   "placement": {
