@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "twodeepfourme",
+	"version": "${version}",
+	"name": "twodeepfourme",
+	"description": "what's under y -64? who knows...",
+	"authors": [
+		"ElzzieFox",
+		"SiokoFox"
+	],
+	"contact": {
+		"homepage": "https://xn--lckwd.fun/projects/mc-mods/2deep4me/",
+		"sources": "https://github.com/lz-fkn/2deep4me"
+	},
+	"license": "MIT",
+	"icon": "assets/twodeepfourme/icon.png",
+	"environment": "*",
+	"mixins": [
+		"twodeepfourme.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

@@ -1,0 +1,16 @@
+
+{
+  "structures": [
+    {
+      "structure": "twodeepfourme:island_house_plains",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 35,
+    "separation": 8,
+    "frequency": 0.3,
+    "salt": 72519433
+  }
+}
