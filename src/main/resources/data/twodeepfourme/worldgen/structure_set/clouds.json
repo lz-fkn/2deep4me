@@ -3,23 +3,43 @@
   "structures": [
     {
       "structure": "twodeepfourme:cloud_1",
-      "weight": 1
+      "weight": 2
     },
     {
       "structure": "twodeepfourme:cloud_2",
-      "weight": 1
+      "weight": 2
     },
     {
       "structure": "twodeepfourme:cloud_3",
-      "weight": 1
+      "weight": 2
     },
     {
       "structure": "twodeepfourme:cloud_4",
-      "weight": 1
+      "weight": 2
     },
     {
       "structure": "twodeepfourme:cloud_5",
+      "weight": 2
+    },
+    {
+      "structure": "twodeepfourme:cloud_6",
+      "weight": 2
+    },
+    {
+      "structure": "twodeepfourme:cloud_7",
+      "weight": 2
+    },
+    {
+      "structure": "twodeepfourme:cloud_8",
+      "weight": 2
+    },
+    {
+      "structure": "twodeepfourme:cloud_9",
       "weight": 1
+    },
+    {
+      "structure": "twodeepfourme:cloud_10",
+      "weight": 2
     }
   ],
   "placement": {

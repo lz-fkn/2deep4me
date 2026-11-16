@@ -22,12 +22,19 @@
       "structure": "twodeepfourme:island_house_unc_1",
       "weight": 8
     },
+    {
+      "structure": "twodeepfourme:island_house_unc_2",
+      "weight": 8
+    },
 
     {
       "structure": "twodeepfourme:island_house_rar_1",
       "weight": 1
+    },
+    {
+      "structure": "twodeepfourme:island_house_rar_2",
+      "weight": 1
     }
-    
   ],
   "placement": {
     "type": "minecraft:random_spread",
