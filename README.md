@@ -25,7 +25,7 @@ build will be at build/libs/twodeepfourme-X.Y.Z.jar
 
 ## installation
 
-this mod supports fabric, quilt and neoforge on minecraft 26.3.
+this mod supports fabric, quilt, forge and neoforge on minecraft 26.3.
 
 1. download the mod [from Releases tab](https://github.com/lz-fkn/2deep4me/releases/latest) (or from build artifacts in actions tab).
 2. if using fabric or quilt, [also download fabric api](https://modrinth.com/mod/fabric-api/versions?g=26.3) (not needed on neoforge).
