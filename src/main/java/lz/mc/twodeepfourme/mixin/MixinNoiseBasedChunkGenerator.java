@@ -3,16 +3,20 @@ package lz.mc.twodeepfourme.mixin;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.WorldGenRegion;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeManager;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.blending.Blender;
+import lz.mc.twodeepfourme.util.Grid3D;
+import lz.mc.twodeepfourme.util.NoiseBundle;
+import lz.mc.twodeepfourme.util.OreDefinition;
+import lz.mc.twodeepfourme.util.Tuning;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -39,6 +43,10 @@ public abstract class MixinNoiseBasedChunkGenerator {
             Set<Holder<Biome>> possibleBiomes,
             CallbackInfoReturnable<CompletableFuture<ChunkAccess>> cir
     ) {
+        if (!Level.OVERWORLD.equals(carverBiomeRegion.getLevel().dimension())) {
+            return;
+        }
+
         final long worldSeed = randomState.seed();
         final NoiseBundle noises = lz$getNoiseBundle(worldSeed);
 
@@ -523,339 +531,5 @@ public abstract class MixinNoiseBasedChunkGenerator {
         return value ^ (value >>> 31);
     }
 
-    private static final class Tuning {
-        private static final int WORLD_MIN_Y = -2032;
-        private static final int WORLD_MAX_Y = -60;
-        private static final int FLOOR_BASE_Y = -2016;
-        private static final int CEILING_BASE_Y = -76;
-        private static final int MIN_CAVERN_HEIGHT = 112;
-        private static final int BEDROCK_LAYERS = 2;
 
-        private static final double FLOOR_SCALE = 180.0;
-        private static final double FLOOR_VARIATION = 18.0;
-        private static final double TERRACE_SCALE = 88.0;
-        private static final double TERRACE_STEPS = 4.0;
-        private static final double TERRACE_HEIGHT = 5.0;
-        private static final double CEILING_SCALE = 155.0;
-        private static final double CEILING_VARIATION = 30.0;
-
-        private static final double CAVE_SCALE_XZ = 270.0;
-        private static final double CAVE_SCALE_Y = 145.0;
-        private static final double WARP_SCALE_XZ = 105.0;
-        private static final double WARP_SCALE_Y = 95.0;
-        private static final double WARP_STRENGTH = 34.0;
-
-        private static final double ROUGH_SCALE_XZ = 42.0;
-        private static final double ROUGH_SCALE_Y = 26.0;
-        private static final double EROSION_SCALE_XZ = 78.0;
-        private static final double EROSION_SCALE_Y = 42.0;
-        private static final double HOLE_SCALE_XZ = 17.0;
-        private static final double HOLE_SCALE_Y = 13.0;
-        private static final double CAVE_WEIGHT = 1.0;
-        private static final double ROUGH_WEIGHT = 0.24;
-        private static final double EROSION_WEIGHT = 0.19;
-        private static final double DENSITY_BIAS = 0.055;
-        private static final double SOLID_THRESHOLD = 0.075;
-        private static final double EDGE_DENSITY = 0.82;
-        private static final double TRANSITION_WIDTH = 22.0;
-        private static final double HOLE_THRESHOLD = 0.91;
-
-        private static final int FIELD_XZ_STEP = 4;
-        private static final int FIELD_Y_STEP = 8;
-        private static final int HOLE_FIELD_XZ_STEP = 2;
-        private static final int HOLE_FIELD_Y_STEP = 4;
-
-        private static final double PILLAR_WARP_SCALE = 62.0;
-        private static final double PILLAR_WARP_STRENGTH = 22.0;
-        private static final double PILLAR_SCALE = 78.0;
-        private static final double PILLAR_DETAIL_SCALE = 17.0;
-        private static final double PILLAR_THRESHOLD = 0.80;
-        private static final double PILLAR_DETAIL_BASE = 0.20;
-        private static final double PILLAR_DETAIL_STRENGTH = 1.35;
-        private static final double SPIKE_SCALE = 56.0;
-        private static final double SPIKE_THRESHOLD = 0.78;
-        private static final double SPIKE_LENGTH_MULTIPLIER = 110.0;
-        private static final int SPIKE_MAX_LENGTH = 26;
-
-        private static final double SURFACE_SCALE = 34.0;
-        private static final double VEGETATION_SCALE = 10.0;
-        private static final double SCULK_SURFACE_THRESHOLD = 0.91;
-        private static final double MOSS_SURFACE_THRESHOLD = 0.50;
-        private static final double TUFF_SURFACE_THRESHOLD = 0.08;
-        private static final double COBBLED_SURFACE_THRESHOLD = -0.42;
-        private static final double GRASS_DECORATION_THRESHOLD = 0.56;
-
-        private static final int ORE_CELL_XZ = 40;
-        private static final int ORE_CELL_Y = 32;
-        private static final double ORE_GRAIN_SCALE = 3.1;
-        private static final double ORE_GRAIN_CUTOFF = -0.48;
-        private static final double ORE_RADIUS_MIN_FACTOR = 0.78;
-        private static final double ORE_RADIUS_MAX_FACTOR = 1.08;
-
-        private static final OreDefinition[] ORES = {
-                new OreDefinition(Blocks.DEEPSLATE_DIAMOND_ORE,
-                        0.20, -2000, -720, 5, 9, 1.05, 1.65, 0x6C8E9CF0A24B315DL),
-                new OreDefinition(Blocks.DEEPSLATE_GOLD_ORE,
-                        0.28, -1536, -256, 6, 11, 1.15, 1.85, 0xA6B3E4C71D92F805L),
-                new OreDefinition(Blocks.DEEPSLATE_IRON_ORE,
-                        0.45, -1536, -128, 7, 13, 1.35, 2.10, 0xD18A3F729BCE6501L),
-                new OreDefinition(Blocks.DEEPSLATE_COAL_ORE,
-                        0.42, -1280, -128, 8, 15, 1.40, 2.25, 0x31F0A9D5C8274B6EL),
-                new OreDefinition(Blocks.DEEPSLATE_EMERALD_ORE,
-                        0.12, -2000, -1024, 4, 7, 0.90, 1.45, 0xE4B17C936A20DF85L),
-                new OreDefinition(Blocks.DEEPSLATE_LAPIS_ORE,
-                        0.28, -1536, -256, 6, 11, 1.15, 1.85, 0x92D5A61BE8437FC0L),
-                new OreDefinition(Blocks.DEEPSLATE_REDSTONE_ORE,
-                        0.38, -1280, -256, 7, 13, 1.35, 2.10, 0xF17C4B8D62A930E5L),
-                new OreDefinition(Blocks.DEEPSLATE_COPPER_ORE,
-                        0.40, -1280, -128, 8, 15, 1.40, 2.25, 0xB83E71D4C9062FA5L)
-        };
-    }
-
-    private static final class OreDefinition {
-        private final Block block;
-        private final double spawnChance;
-        private final int minY;
-        private final int maxY;
-        private final int minLength;
-        private final int maxLength;
-        private final double minRadius;
-        private final double maxRadius;
-        private final long seedSalt;
-
-        private OreDefinition(
-                Block block,
-                double spawnChance,
-                int minY,
-                int maxY,
-                int minLength,
-                int maxLength,
-                double minRadius,
-                double maxRadius,
-                long seedSalt
-        ) {
-            this.block = block;
-            this.spawnChance = spawnChance;
-            this.minY = minY;
-            this.maxY = maxY;
-            this.minLength = minLength;
-            this.maxLength = maxLength;
-            this.minRadius = minRadius;
-            this.maxRadius = maxRadius;
-            this.seedSalt = seedSalt;
-        }
-    }
-
-    private interface FieldSampler {
-        double sample(double x, double y, double z);
-    }
-
-    private static final class Grid3D {
-        private final int minGridX;
-        private final int minGridZ;
-        private final int minGridY;
-        private final int xzStep;
-        private final int yStep;
-        private final int sizeX;
-        private final int sizeY;
-        private final int sizeZ;
-        private final float[] values;
-
-        private Grid3D(
-                FieldSampler sampler,
-                int startX,
-                int startZ,
-                int minY,
-                int maxY,
-                int xzStep,
-                int yStep
-        ) {
-            this.xzStep = xzStep;
-            this.yStep = yStep;
-            this.minGridX = Math.floorDiv(startX, xzStep);
-            this.minGridZ = Math.floorDiv(startZ, xzStep);
-            this.minGridY = Math.floorDiv(minY, yStep);
-            final int maxGridX = Math.floorDiv(startX + 15, xzStep) + 1;
-            final int maxGridZ = Math.floorDiv(startZ + 15, xzStep) + 1;
-            final int maxGridY = Math.floorDiv(maxY - 1, yStep) + 1;
-            this.sizeX = maxGridX - minGridX + 1;
-            this.sizeZ = maxGridZ - minGridZ + 1;
-            this.sizeY = maxGridY - minGridY + 1;
-            this.values = new float[sizeX * sizeY * sizeZ];
-
-            int index = 0;
-            for (int xIndex = 0; xIndex < sizeX; xIndex++) {
-                final double worldX = (minGridX + xIndex) * (double) xzStep;
-                for (int yIndex = 0; yIndex < sizeY; yIndex++) {
-                    final double worldY = (minGridY + yIndex) * yStep;
-                    for (int zIndex = 0; zIndex < sizeZ; zIndex++) {
-                        final double worldZ = (minGridZ + zIndex) * (double) xzStep;
-                        values[index++] = (float) sampler.sample(worldX, worldY, worldZ);
-                    }
-                }
-            }
-        }
-
-        private double sample(double worldX, double worldY, double worldZ) {
-            final double gridX = clamp(worldX / xzStep - minGridX, 0.0, sizeX - 1.0);
-            final double gridY = clamp(worldY / yStep - minGridY, 0.0, sizeY - 1.0);
-            final double gridZ = clamp(worldZ / xzStep - minGridZ, 0.0, sizeZ - 1.0);
-
-            final int x0 = (int) Math.floor(gridX);
-            final int y0 = (int) Math.floor(gridY);
-            final int z0 = (int) Math.floor(gridZ);
-            final int x1 = Math.min(x0 + 1, sizeX - 1);
-            final int y1 = Math.min(y0 + 1, sizeY - 1);
-            final int z1 = Math.min(z0 + 1, sizeZ - 1);
-            final double tx = gridX - x0;
-            final double ty = gridY - y0;
-            final double tz = gridZ - z0;
-
-            final double c000 = get(x0, y0, z0);
-            final double c100 = get(x1, y0, z0);
-            final double c010 = get(x0, y1, z0);
-            final double c110 = get(x1, y1, z0);
-            final double c001 = get(x0, y0, z1);
-            final double c101 = get(x1, y0, z1);
-            final double c011 = get(x0, y1, z1);
-            final double c111 = get(x1, y1, z1);
-
-            final double x00 = lerp(c000, c100, tx);
-            final double x10 = lerp(c010, c110, tx);
-            final double x01 = lerp(c001, c101, tx);
-            final double x11 = lerp(c011, c111, tx);
-            final double y0Value = lerp(x00, x10, ty);
-            final double y1Value = lerp(x01, x11, ty);
-            return lerp(y0Value, y1Value, tz);
-        }
-
-        private float get(int x, int y, int z) {
-            return values[(x * sizeY + y) * sizeZ + z];
-        }
-    }
-
-    private static final class Noise3D {
-        private final int[] permutation = new int[512];
-        private final double xOffset;
-        private final double yOffset;
-        private final double zOffset;
-
-        private Noise3D(long seed) {
-            Random random = new Random(seed);
-            this.xOffset = random.nextDouble() * 256.0;
-            this.yOffset = random.nextDouble() * 256.0;
-            this.zOffset = random.nextDouble() * 256.0;
-
-            int[] shuffled = new int[256];
-            for (int i = 0; i < 256; i++) {
-                shuffled[i] = i;
-            }
-            for (int i = 255; i > 0; i--) {
-                int j = random.nextInt(i + 1);
-                int value = shuffled[i];
-                shuffled[i] = shuffled[j];
-                shuffled[j] = value;
-            }
-            for (int i = 0; i < 512; i++) {
-                permutation[i] = shuffled[i & 255];
-            }
-        }
-
-        private double sample(double x, double y, double z) {
-            x += xOffset;
-            y += yOffset;
-            z += zOffset;
-
-            final int floorX = fastFloor(x);
-            final int floorY = fastFloor(y);
-            final int floorZ = fastFloor(z);
-            final int xi = floorX & 255;
-            final int yi = floorY & 255;
-            final int zi = floorZ & 255;
-            final double xf = x - floorX;
-            final double yf = y - floorY;
-            final double zf = z - floorZ;
-
-            final double u = fade(xf);
-            final double v = fade(yf);
-            final double w = fade(zf);
-
-            final int aaa = permutation[permutation[permutation[xi] + yi] + zi];
-            final int aba = permutation[permutation[permutation[xi] + yi + 1] + zi];
-            final int aab = permutation[permutation[permutation[xi] + yi] + zi + 1];
-            final int abb = permutation[permutation[permutation[xi] + yi + 1] + zi + 1];
-            final int baa = permutation[permutation[permutation[xi + 1] + yi] + zi];
-            final int bba = permutation[permutation[permutation[xi + 1] + yi + 1] + zi];
-            final int bab = permutation[permutation[permutation[xi + 1] + yi] + zi + 1];
-            final int bbb = permutation[permutation[permutation[xi + 1] + yi + 1] + zi + 1];
-
-            final double x1 = lerp(grad(aaa, xf, yf, zf), grad(baa, xf - 1.0, yf, zf), u);
-            final double x2 = lerp(grad(aba, xf, yf - 1.0, zf), grad(bba, xf - 1.0, yf - 1.0, zf), u);
-            final double y1 = lerp(x1, x2, v);
-
-            final double x3 = lerp(grad(aab, xf, yf, zf - 1.0), grad(bab, xf - 1.0, yf, zf - 1.0), u);
-            final double x4 = lerp(grad(abb, xf, yf - 1.0, zf - 1.0), grad(bbb, xf - 1.0, yf - 1.0, zf - 1.0), u);
-            final double y2 = lerp(x3, x4, v);
-
-            return lerp(y1, y2, w) * 0.92;
-        }
-
-        private static int fastFloor(double value) {
-            int integer = (int) value;
-            return value < integer ? integer - 1 : integer;
-        }
-
-        private static double fade(double value) {
-            return value * value * value * (value * (value * 6.0 - 15.0) + 10.0);
-        }
-
-        private static double grad(int hash, double x, double y, double z) {
-            final int h = hash & 15;
-            final double u = h < 8 ? x : y;
-            final double v = h < 4 ? y : (h == 12 || h == 14 ? x : z);
-            return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
-        }
-    }
-
-    private static final class NoiseBundle {
-        private final long worldSeed;
-        private final Noise3D floor;
-        private final Noise3D terrace;
-        private final Noise3D ceiling;
-        private final Noise3D cave;
-        private final Noise3D rough;
-        private final Noise3D erosion;
-        private final Noise3D holes;
-        private final Noise3D warpX;
-        private final Noise3D warpZ;
-        private final Noise3D pillarWarpX;
-        private final Noise3D pillarWarpZ;
-        private final Noise3D pillar;
-        private final Noise3D pillarDetail;
-        private final Noise3D spikes;
-        private final Noise3D surface;
-        private final Noise3D vegetation;
-        private final Noise3D oreShape;
-
-        private NoiseBundle(long seed) {
-            this.worldSeed = seed;
-            floor = new Noise3D(lz$mix64(seed ^ 0x359797125L));
-            terrace = new Noise3D(lz$mix64(seed ^ 0x274114186L));
-            ceiling = new Noise3D(lz$mix64(seed ^ 0x846676657L));
-            cave = new Noise3D(lz$mix64(seed ^ 0x966870467L));
-            rough = new Noise3D(lz$mix64(seed ^ 0x633719758L));
-            erosion = new Noise3D(lz$mix64(seed ^ 0x815972908L));
-            holes = new Noise3D(lz$mix64(seed ^ 0x929352842L));
-            warpX = new Noise3D(lz$mix64(seed ^ 0x509374209L));
-            warpZ = new Noise3D(lz$mix64(seed ^ 0x768522301L));
-            pillarWarpX = new Noise3D(lz$mix64(seed ^ 0x350742862L));
-            pillarWarpZ = new Noise3D(lz$mix64(seed ^ 0x848102193L));
-            pillar = new Noise3D(lz$mix64(seed ^ 0x721468529L));
-            pillarDetail = new Noise3D(lz$mix64(seed ^ 0x772613499L));
-            spikes = new Noise3D(lz$mix64(seed ^ 0x446871935L));
-            surface = new Noise3D(lz$mix64(seed ^ 0x881264723L));
-            vegetation = new Noise3D(lz$mix64(seed ^ 0x193847561L));
-            oreShape = new Noise3D(lz$mix64(seed ^ 0xB42D6E91A70C53F1L));
-        }
-    }
 }

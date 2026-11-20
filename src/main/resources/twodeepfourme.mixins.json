@@ -1,7 +1,6 @@
 {
 	"required": true,
 	"package": "lz.mc.twodeepfourme.mixin",
-	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"MixinNoiseBasedChunkGenerator"
 	],

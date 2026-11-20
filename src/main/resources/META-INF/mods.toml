@@ -1,0 +1,28 @@
+modLoader="lowcodefml"
+loaderVersion="[66,)"
+license="MIT"
+issueTrackerURL="https://github.com/lz-fkn/2deep4me/issues"
+
+[[mods]]
+modId="twodeepfourme"
+version="${version}"
+displayName="twodeepfourme"
+authors="ElzzieFox, SiokoFox"
+description="what's under y -64? who knows..."
+displayURL="https://xn--lckwd.fun/projects/mc-mods/2deep4me/"
+logoFile="assets/twodeepfourme/icon.png"
+showAsResourcePack=false
+
+[[dependencies.twodeepfourme]]
+modId="forge"
+mandatory=true
+versionRange="[66,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.twodeepfourme]]
+modId="minecraft"
+mandatory=true
+versionRange="[26.3]"
+ordering="NONE"
+side="BOTH"
